@@ -1,0 +1,32 @@
+@* Agregamos la referencia a este modelo y la definimos con una estructura Enumerable, para que esta estructura sea
+iterable
+Enumerable permite ver registro por registro de la tabla para luego mostrarlo. *@
+@model IEnumerable<Turnos.Models.Especialidad>
+
+    <table>
+        @*Sobre el THEAD definimos el encabezado de la tabla*@
+        <thead>
+            <tr>
+                <th>
+                    @*Con lo siguiente hacemos un despliegue HTML con el elemento descripcion del modelo*@
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @*Aqui colocaremos el codigo para mostrar los registros sobre la base de datos*@
+            @*A continuacion recorremos con un ciclo los elementos de la base de datos*@
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                @*Hacemos un link a la vista de editar*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.idEspecialidad">Editar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

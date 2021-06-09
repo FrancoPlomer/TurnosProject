@@ -1,0 +1,32 @@
+@model Turnos.Models.Especialidad
+
+<h1>Especialidad</h1>
+
+<div>
+    @*De esta manera estamos indicandole a la vista que la accion del formulario se aplica sobre el metodo Edit*@
+    <form asp-action="Edit">
+        @*Esta etiqueta sirve para validar los elementos dentro del formulario, por ejemplo verificar si colocaron un elemento vacio*@
+        <div asp-validation-summary="ModelOnly"></div>
+        @*Lo siguiente trae el dato del ID*@
+        <input type="hidden" asp-for="idEspecialidad">
+        <div>
+            @*Lo siguiente hace que, primero guarda la informacion de la descripcion en un label
+            segundo toma ese dato descripcion y lo coloca en un input para que lo podamos editar
+            tercero valida por medio de span y en conexion en el validation-summary encima que 
+            pongamos contenido en el input antes de grabar*@
+            <label asp-for="Descripcion"></label>
+            <input asp-for="Descripcion"/>
+            <span asp-validation-for="Descripcion"></span>
+        </div>
+        <div>
+            @*agregamos el boton para grabar*@
+            <input type="submit" value="Grabar"/>
+        </div>
+
+    </form>
+
+</div>
+<div>
+    @*Para volver a la vista principal*@
+    <a asp-action="Index">Volver</a>
+</div>
