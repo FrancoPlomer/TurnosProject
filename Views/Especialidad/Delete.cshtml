@@ -1,0 +1,26 @@
+@model Turnos.Models.Especialidad
+
+<h3>
+    ¿Esta usted seguro de eliminar el siguiente registro?
+</h3>
+
+<div>
+    @*Esta etiqueta nos permite agregar descripciones de algun elemento*@
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(modelo => modelo.Descripcion)
+        </dt>
+        @*La siguiente es la etiqueta descripcion data*@
+        <dd>
+            @Html.DisplayFor(modelo => modelo.Descripcion)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+    <input type="hidden" asp-for="idEspecialidad">
+    <input type="submit" value="Eliminar">
+    </form>
+    @*Por si nos arrepentimos de borrar el registro*@
+    <div>
+        <a asp-action="index">Volver</a>
+    </div>
+</div>
