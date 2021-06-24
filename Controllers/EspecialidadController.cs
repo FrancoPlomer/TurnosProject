@@ -66,5 +66,34 @@ namespace Turnos.Controllers
             }
             return View(especialidad);
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            //De la siguiente manera ingresamos a nuestro campo especialidad y a traves del metodo 
+            //FirstOrDefault va a encontrar la primer coincidencia que se asimile al id que ingresa como parametro Y en el caso que no 
+            //retorne nada devuelve default.
+
+            var especialidad = _context.Especialidad.FirstOrDefault(e => e.idEspecialidad == id);
+            //En el caso que no exista la especialidad devuelve NotFound a traves de la sig validacion
+            if(especialidad == null)
+            {
+                return NotFound();
+            }
+            return View(especialidad);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var especialidad = _context.Especialidad.Find(id);
+            _context.Especialidad.Remove(especialidad);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
